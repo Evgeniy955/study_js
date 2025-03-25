@@ -8,7 +8,7 @@
 const num2 = 5;
 console.log("Переменая: ", num2);
 
-let num3 = 5;
+let num3;
 num3 = String(7);
 console.log("Переменая: ", num3);
 
