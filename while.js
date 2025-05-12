@@ -1,15 +1,3 @@
-for (let i = 0;
-     i < 10;
-     i++) {
-    console.log(i)
-}
-
-for (let t = 100;
-     t > 5;
-     t /=2) {
-    console.log(t)
-}
-
 let j  = 1000;
 while (j >=100) {
     console.log(j);
