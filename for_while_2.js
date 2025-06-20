@@ -14,7 +14,7 @@ for (let p = 10; p <=20; p++) {
 
 let arr = [5, 7, 3, 8, 9, "Hello"];
 for (let i = 0; i < arr.length; i++) {
-    arr[i] *= 2;kl
+    arr[i] *= 2;
     console.log("Элемент " + (i+ 1) + ": " + arr[i]);
 }
 
