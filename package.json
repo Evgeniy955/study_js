@@ -2,7 +2,7 @@
   "name": "study_js",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "from_youtube/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
