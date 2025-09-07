@@ -29,3 +29,4 @@ num8++;
 console.log("Результат: ", num8);
 num8--;
 console.log("Результат: ", String(num8));
+console.log(typeof num8);
