@@ -69,6 +69,17 @@ let favoriteFruits5 = ["grapefruit", "orange", "lemon"];
 console.log(favoriteFruits5.includes("orange")); // true
 console.log(favoriteFruits5.indexOf("lemon")); // 2
 console.log(favoriteFruits5.indexOf("banana")); // -1 (нет в массиве)
+console.log(favoriteFruits5.indexOf("orange", 2)); // -1 (нет в массиве после индекса 2)
+let animals = ["dog", "horse", "cat", "platypus", "dog"];
+let lastDog = animals.lastIndexOf("dog");
+console.log(lastDog); // 4 получаем последний индекс элемента "dog"
+
+// Поиск элемента в массиве, если есть 6, то вернуть его
+arr8 = [2, 6, 7, 8];
+let findValue = arr8.find(function (e) {
+    return e === 6
+});
+console.log(findValue);
 
 // Сортировка массива
 let favoriteFruits6 = ["grapefruit", "orange", "lemon"];
@@ -84,3 +95,10 @@ console.log(favoriteFruits7); // ["lemon", "orange", "grapefruit"]
 let favoriteFruits8 = ["grapefruit", "orange", "lemon"];
 let fruitsString = favoriteFruits8.join(", ");
 console.log(fruitsString); // "grapefruit, orange, lemon"
+
+
+arr8 = [2, 6, 7, 8];
+let findValue = arr8.find(function (e) {
+    return e === 6
+});
+console.log(findValue);
