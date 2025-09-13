@@ -22,9 +22,9 @@ arrOfShapes1.splice(2, 1, "square", "trapezoid");
 console.log(arrOfShapes1); // ["circle", "triangle", "square", "trapezoid", "pentagon"]
 
 // Удаление и замена элементов по индексу
-let arrOfShapes = ["circle", "triangle", "rectangle", "pentagon"];
-arrOfShapes.splice(2, 2, "square", "trapezoid");
-console.log(arrOfShapes); // ["circle", "triangle", "square", "trapezoid"]
+let arrOfShapes2 = ["circle", "triangle", "rectangle", "pentagon"];
+arrOfShapes2.splice(2, 2, "square", "trapezoid");
+console.log(arrOfShapes2); // ["circle", "triangle", "square", "trapezoid"]
 
 // Объединение массивов
 let arr5 = [1, 2, 3];
@@ -37,9 +37,11 @@ let arr8 = arr7.concat(7, 8, 9);
 console.log(arr8); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 // Копирование части массива
-let arr8 = [1, 2, 3, 4, 5];
-let partOfArr = arr8.slice(1, 4);
+let arr9 = [1, 2, 3, 4, 5];
+let partOfArr = arr9.slice(1, 4);
 console.log(partOfArr); // [2, 3, 4]
+arr9.slice(1, 4)
+console.log(arr9) // [1, 2, 3, 4, 5]
 
 // Удаление последнего элемента массива
 let favoriteFruits1 = ["grapefruit", "orange", "lemon"];
