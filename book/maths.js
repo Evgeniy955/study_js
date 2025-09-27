@@ -15,3 +15,11 @@ function converter2(miles) {
 }
 
 console.log(converter(131));
+
+
+const randomTyme = new Date().getTime();
+console.log(randomTyme);
+
+
+const randomNumber = Math.floor(Math.random() * 101);
+console.log(randomNumber); // число от 0 до 100
