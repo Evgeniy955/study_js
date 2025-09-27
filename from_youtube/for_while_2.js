@@ -18,7 +18,7 @@ for (let i = 0; i < arr.length; i++) {
     console.log("Элемент " + (i + 1) + ": " + arr[i]);
 }
 
-let arr = [5, 7, 3, 8, 9, "Hello"];
+// let arr = [5, 7, 3, 8, 9, "Hello"];
 arr.forEach((item, i, array) => {
     if (typeof item === "number") {
         array[i] = item * 2;
