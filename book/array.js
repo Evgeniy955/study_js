@@ -102,3 +102,27 @@ let findValue = arr8.find(function (e) {
     return e === 6
 });
 console.log(findValue);
+
+
+// Увеличить каждый элемент массива на 1
+let numbers = [1, 2, 3, 4];
+for (let i = 0; i < numbers.length; i++) {
+    numbers[i] = numbers[i] + 1;
+}
+console.log(numbers); // [2, 3, 4, 5]
+
+// Преобразовать все строки в верхний регистр
+let fruits = ["apple", "banana", "cherry"];
+for (let i = 0; i < fruits.length; i++) {
+    fruits[i] = fruits[i].toUpperCase();
+}
+console.log(fruits); // ["APPLE", "BANANA", "CHERRY"]
+
+// Заменить отрицательные числа на 0
+let values = [3, -2, 7, -5, 0];
+for (let i = 0; i < values.length; i++) {
+    if (values[i] < 0) {
+        values[i] = 0;
+    }
+}
+console.log(values); // [3, 0, 7, 0, 0]
