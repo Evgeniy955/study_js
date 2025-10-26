@@ -50,3 +50,49 @@ let nr = 2;
 console.log(nr++); //добавляет при следующем вызове
 console.log(nr);
 console.log(++nr); // добавляет сразу
+
+let cars = [
+    {
+        model: "Golf",
+        make: "Volkswagen",
+        year: 1999,
+        color: "black",
+    },
+    {
+        model: "Picanto",
+        make: "Kia",
+        year: 2020,
+        color: "red",
+    },
+    {
+        model: "Peugeot",
+        make: "208",
+        year: 2021,
+        color: "black",
+    },
+    {
+        model: "Fiat",
+        make: "Punto",
+        year: 2020,
+        color: "black",
+    }
+];
+
+for (let car of cars) {
+    if (car.color !== "black") {
+        continue;
+    }
+    if (car.year >= 2020) {
+        console.log("we could get this one:", car);
+    }
+}
+
+
+for (const element of cars) {
+    if (element.year >= 2020) {
+        if (element.color === "black") {
+            console.log("I have found my new car:", element);
+            break;
+        }
+    }
+}
