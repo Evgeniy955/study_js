@@ -1,3 +1,16 @@
+let arr = new Array(3); // Creates an array with 3 empty slots
+let arr2 = new Array(1, 2, 3); // [1, 2, 3]
+
+let arr = Array.of(1, 2, 3); // [1, 2, 3]
+
+let arr = Array.from('hello'); // ['h', 'e', 'l', 'l', 'o']
+let arr2 = Array.from({length: 3}, (_, i) => i + 1); // [1, 2, 3]
+
+let arr = [1, 2, 3];
+let agrs = Array.from(arr); // [1, 2, 3]
+let arr = Array.from(arr, x => x * 2); // [2, 4, 6]
+
+
 let booleans = [true, false, false, true];
 console.log(booleans.length)
 
