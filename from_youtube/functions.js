@@ -18,7 +18,7 @@ function info(word) {
 //
 //     console.log(sum2);
 // }
-function summa2 (arr) {
+function summa2(arr) {
     let sum2 = 0;
     for (const element of arr)
         sum2 += element;
@@ -32,3 +32,17 @@ let array_2 = [6, 8, 1, 7];
 let res = summa2(array);
 console.log("Результат", res);
 summa2(array_2);
+
+
+// Обычная функция
+function sum(a, b) {
+    return a + b;
+}
+
+// Функциональное выражение
+const sum2 = function (a, b) {
+    return a + b;
+};
+
+// Стрелочная функция
+const sum3 = (a, b) => a + b;

@@ -23,6 +23,6 @@ let counter = 0;
 function my_func() {
     counter++;
     console.log(counter);
-    if (counter ===3)
+    if (counter === 3)
         clearInterval(id);
 }
