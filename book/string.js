@@ -43,3 +43,8 @@ if (str.endsWith(".")) {
 }
 console.log(str);
 console.log(str[0]);
+
+let s1 = "Hello ";
+let s2 = "JavaScript";
+let result = s1.concat(s2);
+console.log(result) // "Hello JavaScript";
