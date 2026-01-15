@@ -3,7 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { spawn } = require('child_process');
+const { spawn, execSync } = require('child_process');
 
 function findConfigPaths() {
   const candidates = [];
@@ -67,7 +67,7 @@ function pickServer(cfg, name) {
 function escapeArgForShell(arg) {
   if (!arg) return '';
   // Простое экранирование: если есть пробел или спецсимволы — обернуть в двойные кавычки
-  if (/\s|"|'/g.test(arg)) {
+  if (/\s|"|'/.test(arg)) {
     return '"' + arg.replace(/"/g, '\\"') + '"';
   }
   return arg;
@@ -114,6 +114,77 @@ function removePidFile(file) {
   }
 }
 
+// --- BEGIN: lightweight status-check utilities copied from status_mcp.js ---
+// These are added so `run_mcp.js` can show status without spawning the separate script.
+
+// color support detection: --color / --no-color flags or NO_COLOR env
+const _argsForColor = process.argv.slice(2);
+const _forceColorOn = _argsForColor.includes('--color');
+const _forceColorOff = _argsForColor.includes('--no-color') || !!process.env.NO_COLOR;
+let _supportsColor = false;
+if (_forceColorOn) _supportsColor = true;
+else if (_forceColorOff) _supportsColor = false;
+else _supportsColor = (typeof process.stdout !== 'undefined' && !!process.stdout.isTTY);
+
+const COLOR_CODES = {
+  reset: '\x1b[0m',
+  bold: '\x1b[1m',
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+};
+
+function color(text, colorName) {
+  if (!_supportsColor || !colorName || !COLOR_CODES[colorName]) return text;
+  return COLOR_CODES[colorName] + text + COLOR_CODES.reset;
+}
+
+function readPid(file) {
+  try {
+    if (!fs.existsSync(file)) return null;
+    const raw = fs.readFileSync(file, 'utf8').trim();
+    const pid = Number.parseInt(raw, 10);
+    if (Number.isNaN(pid)) return null;
+    return pid;
+  } catch (e) {
+    return null;
+  }
+}
+
+function isProcessRunning(pid) {
+  if (!pid) return false;
+  try {
+    if (process.platform === 'win32') {
+      const out = execSync(`tasklist /FI "PID eq ${pid}" /NH`, { encoding: 'utf8' });
+      return out && !/No tasks are running/.test(out) && !/INFO: No tasks are running/.test(out);
+    } else {
+      process.kill(pid, 0);
+      return true;
+    }
+  } catch (e) {
+    return false;
+  }
+}
+
+function printStatusForPidPath(pidPath, serverName) {
+  const pid = readPid(pidPath);
+  if (!pid) {
+    console.log(color('No PID file found at ' + pidPath, 'yellow'));
+    console.log(color('Server appears to be not running (or was started externally).', 'yellow'));
+    console.log(color("Tip: run with --color to force colored output or --no-color to disable.", 'blue'));
+    return;
+  }
+  const running = isProcessRunning(pid);
+  if (running) {
+    console.log(color(`Server ${serverName} is running (PID: ${pid}).`, 'green'));
+  } else {
+    console.log(color(`PID file exists but process ${pid} is not running.`, 'red'));
+    console.log(color(`You may remove stale PID file: ${pidPath}`, 'yellow'));
+  }
+}
+// --- END: status-check utilities ---
+
 function run() {
   const cfg = loadConfig();
   if (!cfg) {
@@ -131,6 +202,15 @@ function run() {
   }
 
   const s = picked.cfg;
+
+  // show status before attempting to start
+  try {
+    const pidPath = pidFilePath(picked.name);
+    printStatusForPidPath(pidPath, picked.name);
+  } catch (e) {
+    // ignore status-check errors
+  }
+
   if (!s.command) {
     console.error('Server config must contain "command"');
     process.exit(4);
@@ -213,4 +293,3 @@ function run() {
 }
 
 run();
-
