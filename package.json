@@ -4,7 +4,11 @@
   "description": "",
   "main": "from_youtube/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:mcp-config": "node scripts/run_mcp.js",
+    "status:mcp": "node scripts/status_mcp.js",
+    "stop:mcp": "node scripts/stop_mcp.js",
+    "mcp:info": "node scripts/mcp_info.js"
   },
   "private": true
 }

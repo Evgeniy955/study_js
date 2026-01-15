@@ -13,3 +13,10 @@ rl.question('Please enter your name: ', (userName) => {
     }
     rl.close();
 });
+
+
+let star = '*';
+for (let i = 0; i < 5; i++) {
+    console.log(star + star.repeat(i));
+    // star += '*';
+}
