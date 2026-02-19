@@ -48,3 +48,13 @@ let s1 = "Hello ";
 let s2 = "JavaScript";
 let result = s1.concat(s2);
 console.log(result) // "Hello JavaScript";
+
+
+let string = "qwerty132450"
+let numberFromSting = "";
+for (const i of string) {
+    if (Number.isInteger(i)) {
+        numberFromSting += i;
+    }}
+
+console.log(numberFromSting);
