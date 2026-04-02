@@ -53,7 +53,7 @@ console.log(result) // "Hello JavaScript";
 let string = "qwerty132450"
 let numberFromSting = "";
 for (const i of string) {
-    if (Number.isInteger(i)) {
+    if (Number(i) || i === "0") {
         numberFromSting += i;
     }}
 
